@@ -20,6 +20,6 @@ public class GreetingResource {
     @Authorization("hello")
     public String hello() throws Exception {
     	System.out.println(teste);
-        return "Hello from RESTEasy Reactive --";
+        return "Hello from RESTEasy Reactive";
     }
 }
