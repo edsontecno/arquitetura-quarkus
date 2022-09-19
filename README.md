@@ -1,56 +1,53 @@
-# code-with-quarkus Project
+# Arquitetura padrão quakus
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Essa é uma arquitetura padrão utilizando Quarkus.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+## Rodando a aplicação em desenvolvimento
 
-## Running the application in dev mode
+Você pode rodar de duas formas:
 
-You can run your application in dev mode that enables live coding using:
+- Utilizando o maven
 ```shell script
 ./mvnw compile quarkus:dev
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+- Utilizando a linha de comando, para isso é necessário realizar a instalação de forma global:
 
-## Packaging and running the application
+```shell scritp
+curl -Ls https://sh.jbang.dev | bash -s - trust add https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/
+curl -Ls https://sh.jbang.dev | bash -s - app install --fresh --force quarkus@quarkusio
 
-The application can be packaged using:
-```shell script
-./mvnw package
+
 ```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
-
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
+Depois execute o comando:
+```shell scritp
+quarkus dev
 ```
-
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: 
-```shell script
-./mvnw package -Pnative
+- Utilizando docker
+```shell scritp
+docker-compose up
 ```
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
-```
+> **_NOTE:_**  Uma vez funcionando a aplicação estará disponível em http://localhost:8080.
 
-You can then execute your native executable with: `./target/code-with-quarkus-1.0.0-SNAPSHOT-runner`
+## Recursos implementados
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
+### Handle exception
 
-## Provided Code
+Toda exceção será tratada no arquivo `ExceptionsFilter`
 
-### RESTEasy Reactive
+### Annotation para autorização
+Já está implemtado a annotation para tratar de autorizações, sua utilização se dá seguinte forma:
 
-Easily start your Reactive RESTful Web Services
+No método escolhido adicionar a annotation `@Authorization(value="nome da regra")` e seu tratamento é realizado pela classe `AuthorizationService`
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+### Annotation para autorização
+Filtro para todas as requisições implemetado pela classe `LogFilter`
+
+### Metrics
+No endereço /metrics já está disponível as métricas de acessos no padrão B5
+
+### Swagger
+
+No endereço /api-docs está disponível a documentação dos endpoints mapeados via swagger.
+
