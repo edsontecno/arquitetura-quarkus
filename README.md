@@ -51,3 +51,6 @@ No endereço /metrics já está disponível as métricas de acessos no padrão B
 
 No endereço /api-docs está disponível a documentação dos endpoints mapeados via swagger.
 
+### Erros
+Todas as mensagens de erro devem ficar centralizadas no arquivo `messageEnum`. Elas são acessíveis pelo endpoint /errors
+

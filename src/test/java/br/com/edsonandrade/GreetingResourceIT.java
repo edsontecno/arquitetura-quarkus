@@ -1,4 +1,4 @@
-package org.acme;
+package br.com.edsonandrade;
 
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 
