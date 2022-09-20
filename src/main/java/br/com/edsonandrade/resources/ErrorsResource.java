@@ -20,7 +20,7 @@ import br.com.edsonandrade.enums.MessageEnum;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Path("/errors")
-public class ErrorsResource {
+public class ErrorsResource{
 
     @GET
     @Operation(summary = "Lista de Erros", description = "Retorna uma lista de erros sem formatação que a aplicação pode lançar.")
