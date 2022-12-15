@@ -59,3 +59,4 @@ jobs:
         file: ./src/main/docker/Dockerfile.jvm
         push: true
         tags: ${{secrets.REPOSITORY_DOCKER_HUB}}/${{secrets.PROJECT_QUARKUS_ARCHITECTURE}}:${{ steps.project.outputs.version }} 
+        
