@@ -43,7 +43,7 @@ jobs:
 
     - name: Check if image exists on Docker Hub
       run: |
-        existing_images=$(docker images --format "${{secrets.REPOSITORY_DOCKER_HUB}}/${{secrets.PROJECT_QUARKUS_ARCHITECTURE}}:${{ steps.project.outputs.version }}")
+        existing_images=$(docker images --format "{{.Repository}}:{{.Tag}}")
         if [[ $existing_images == *"${{secrets.REPOSITORY_DOCKER_HUB}}/${{secrets.PROJECT_QUARKUS_ARCHITECTURE}}:${{ steps.project.outputs.version }}"* ]]; then
           echo "Image already exists on Docker Hub. Skipping push."
           exit 1
