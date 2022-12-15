@@ -38,9 +38,6 @@ jobs:
       run: echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
       id: project
 
-    - name: Show extracted Maven project version
-      run: echo ${{ steps.project.outputs.version }}  
-
     - name: setup Docker Build
       uses: docker/setup-buildx-action@v2.0.0  
 
@@ -56,4 +53,4 @@ jobs:
         context: .
         file: ./src/main/docker/Dockerfile.jvm
         push: true
-        tags: edsontecno/quarkus-architecture:alura
+        tags: edsontecno/quarkus-architecture:${{ steps.project.outputs.version }} 
